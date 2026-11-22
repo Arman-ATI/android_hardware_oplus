@@ -3,11 +3,28 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+package {
+    default_applicable_licenses: ["hardware_oplus_qseecom_license"],
+}
+
+license {
+    name: "hardware_oplus_qseecom_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["SPDX-license-identifier-Apache-2.0"],
+}
+
+cc_library_headers {
+    name: "libQSEEComAPI_headers",
+    vendor_available: true,
+    export_include_dirs: ["include"],
+}
+
 cc_library_static {
     name: "libqseecom.oplus",
     vendor: true,
     srcs: ["Trustlet.cpp"],
     export_include_dirs: ["include"],
+    header_libs: ["libQSEEComAPI_headers"],
     shared_libs: [
         "libbase",
         "libdl",
